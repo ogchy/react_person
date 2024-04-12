@@ -1,16 +1,18 @@
-const Person = ({ person }) => {
-  const { name, age, isMarried, partnerName } = person;
-  const maritalStatus = isMarried
-    ? `Spouse: ${partnerName}`
-    : 'I am not married';
+export const Person = ({ person }) => {
+  const { name, age, sex, isMarried, partnerName } = person;
 
   return (
-    <div className="Person">
+    <div className="person">
       <h2 className="Person__name">My name is {name}</h2>
-      {age && <p className="Person__age">Age: {age}</p>}
-      <p className="Person__marriedStatus">{maritalStatus}</p>
+      {age && <p className="Person__age">I am {age}</p>}
+      {isMarried && (
+        <p className="Person__marriedStatus">
+          {sex === 'm'
+            ? `${partnerName} is my wife`
+            : `${partnerName} is my husband`}
+        </p>
+      )}
+      {!isMarried && <p className="Person__partner">I am not married</p>}
     </div>
   );
 };
-
-export default Person;
